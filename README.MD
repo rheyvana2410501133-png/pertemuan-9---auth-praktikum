@@ -40,3 +40,6 @@ npx expo start
 - @react-native-async-storage/async-storage : Auth persistence
 - @react-navigation/native : Navigation
 - @react-navigation/native-stack : Stack navigator
+
+## Link Video Demo
+[klik disini] https://drive.google.com/drive/folders/1E4lM5O6jiibJmFBGVJOb_397rvcquZeG
