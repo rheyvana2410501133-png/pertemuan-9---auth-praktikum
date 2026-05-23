@@ -80,7 +80,7 @@ npx expo start
 
 ## Dependencies
 - firebase : Firebase Auth & Firestore
-- expo-image-picker : Pilih foto dari galeri
+- expo image picker : Pilih foto dari galeri
 
 ## Link Video Demo
 [klik disini] https://drive.google.com/drive/folders/1E4lM5O6jiibJmFBGVJOb_397rvcquZeG
