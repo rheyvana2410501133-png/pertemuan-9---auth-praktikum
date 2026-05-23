@@ -9,6 +9,7 @@ import LoginScreen from './src/screens/Loginscreen';
 import RegisterScreen from './src/screens/Registerscreen';
 import ForgotPasswordScreen from './src/screens/Forgotpasswordscreen';
 import HomeScreen from './src/screens/Homescreen';
+import ChatScreen from './src/screens/ChatScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,12 @@ function AppStack() {
         name="Home"
         component={HomeScreen}
         options={{ title: 'Beranda', headerLeft: () => null }}
+      />
+      {/* ── Tambahan: ChatScreen ── */}
+      <Stack.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{ title: 'Chat' }}
       />
     </Stack.Navigator>
   );

@@ -1,3 +1,4 @@
+// src/screens/Homescreen.js
 import React from 'react';
 import {
   View,
@@ -5,7 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
- StyleSheet,
+  StyleSheet,
 } from 'react-native';
 
 import { sendEmailVerification } from 'firebase/auth';
@@ -15,13 +16,12 @@ import { auth } from '../config/Firebase';
 
 import S, { COLORS } from '../styles/globalStyles';
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const { user, logout } = useAuth();
   const { resetTimer } = useIdleLogout();
 
   const cekVerif = async () => {
     await auth.currentUser.reload();
-
     Alert.alert(
       auth.currentUser.emailVerified ? 'Berhasil' : 'Belum',
       auth.currentUser.emailVerified
@@ -43,19 +43,13 @@ export default function HomeScreen() {
     >
       <View style={styles.top}>
         <Text style={styles.title}>Selamat Datang</Text>
-
         <Text style={styles.email}>{user?.email}</Text>
-
         <Text
           style={{
-            color: user?.emailVerified
-              ? COLORS.success
-              : COLORS.warning,
+            color: user?.emailVerified ? COLORS.success : COLORS.warning,
           }}
         >
-          {user?.emailVerified
-            ? '✓ Email terverifikasi'
-            : '⚠ Belum verifikasi'}
+          {user?.emailVerified ? '✓ Email terverifikasi' : '⚠ Belum verifikasi'}
         </Text>
       </View>
 
@@ -66,21 +60,22 @@ export default function HomeScreen() {
 
       {!user?.emailVerified && (
         <>
-          <TouchableOpacity
-            style={[S.btn, styles.btn]}
-            onPress={cekVerif}
-          >
+          <TouchableOpacity style={[S.btn, styles.btn]} onPress={cekVerif}>
             <Text style={S.btnText}>Cek Verifikasi</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[S.btnOutline, styles.btn]}
-            onPress={kirimUlang}
-          >
+          <TouchableOpacity style={[S.btnOutline, styles.btn]} onPress={kirimUlang}>
             <Text style={S.btnOutlineText}>Kirim Ulang</Text>
           </TouchableOpacity>
         </>
       )}
+
+      {/* ── Tombol buka Chat ── */}
+      <TouchableOpacity
+        style={[S.btn, styles.btn, styles.btnChat]}
+        onPress={() => navigation.navigate('Chat')}
+      >
+        <Text style={S.btnText}>Buka Chat</Text>
+      </TouchableOpacity>
 
       <TouchableOpacity
         style={[S.btn, S.btnDanger, styles.btn]}
@@ -96,25 +91,24 @@ const styles = StyleSheet.create({
   top: {
     padding: 24,
   },
-
   title: {
     fontSize: 28,
     fontWeight: '700',
     color: COLORS.textPrimary,
   },
-
   email: {
     marginVertical: 10,
     color: COLORS.textSecondary,
   },
-
   card: {
     marginHorizontal: 20,
     gap: 10,
   },
-
   btn: {
     marginHorizontal: 20,
     marginTop: 12,
+  },
+  btnChat: {
+    backgroundColor: '#431f10', 
   },
 });
